@@ -1,0 +1,204 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+#editor
+{
+    position: relative;
+    height: 600px;
+}
+
+.nav li a{
+    cursor: pointer;
+}
+
+/*
+
+Sequencer
+Code
+
+*/
+
+#divListaXixizeros
+{
+    border-color: #eee;
+    border-style: solid;
+    float: left;
+    padding: 8px;
+    width: 80%;
+}
+
+#divEscripte
+{
+    border-color: #eee;
+    border-style: solid;
+    float: left;
+    padding: 8px;
+}
+
+#preXixizero
+{
+    font-size: 14pt;
+    background-color: #fcfcfc;
+    border-color: #efe;
+    border-style: solid;
+    width: 100%;
+    line-height: 23px;
+}
+
+#listaXixizeros li
+{
+    border-color: #eee;
+    border-style: solid;
+    border-width: 1px;
+    padding: 3px;
+    font-size: 10pt;
+    cursor: pointer;
+}
+
+#divResultadoParcial
+{
+    border-color: #eee;
+    border-style: solid;
+    padding: 8px;
+    float: left;
+}
+
+.naoSelecionado
+{
+    background-color: #fff;
+}
+.selecionado
+{
+    background-color: #cfc;
+}
+
+#divCopyLink
+{
+    border-color: #eee;
+    border-style: solid;
+    text-align: right;
+    width: 100%;
+}
+#spanCopyLink
+{
+    cursor: pointer;
+    text-decoration: underline;
+}
+#preEscripteCompleto
+{
+    width: 100px;
+    height: 20px;
+    font-size: 8pt;
+}
+
+.subTituloInterno
+{
+    padding: 3px;
+    font-size: 11pt;
+    background-color: #eee;
+}
+
+
+/*
+
+ESCRIPTE
+
+*/
+
+.nome
+{
+    padding: 3px;
+    background-color: #777;
+    color: #fff;
+    font-size: 120%;
+    font-family: Consolas;
+    font-weight: bold;
+}
+
+.descricao
+{
+    display: block;
+    padding: 3px;
+    background-color: #ddd;
+    font-size: 80%;
+    font-family: Consolas;
+}
+
+.menu
+{
+    height: 20px;
+
+    display: block;
+    padding: 3px;
+    background-color: #fafafa;
+    font-size: 90%;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+.subTitulo
+{
+    height: 20px;
+
+    display: block;
+    padding: 2px;
+    margin: 15px;
+    background-color: #fafafa;
+    font-size: 110%;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+
+.char_tab {
+    margin-left: 3px;
+    margin-right: 3px;
+    color: #333;
+    background-color: #ded;
+}
+.char_n {
+    font-size: 60%;
+    margin-left: 1px;
+    margin-right: 1px;
+    color: #aaa;
+    background-color: #fee;
+}
+.char_replacer_separator {
+    font-size: 100%;
+    font-weight: bold;
+    color: #222;
+    background-color: #ddf;
+}
+.comentario {
+    font-size: 100%;
+    background-color: #efe;
+    color: #262;
+}
+.template {
+    font-size: 100%;
+    background-color: #ffc;
+    color: #333;
+}
+.comando {
+    font-size: 90%;
+    padding: 4px;
+    line-height: 30px;
+    color: #333;
+    font-weight: bold;
+    background-color: #ddf;
+}
+
+#preEscripte, #preEscripteResultado, #textAreaDados {
+    font-size: 140%;
+    font-family: Consolas;
+}
+
+#divTransformar{
+    height: 350px;
+    padding-bottom: 60px;
+}
+#divTransformar textarea{
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+}
