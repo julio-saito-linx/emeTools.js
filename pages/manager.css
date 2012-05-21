@@ -188,8 +188,8 @@ ESCRIPTE
     background-color: #ddf;
 }
 
-#preEscripte, #preEscripteResultado, #textAreaDados {
-    font-size: 140%;
+#preEscripte, #preEscripteResultado, #textAreaDados, #divSequenceResults pre{
+    font-size: 130%;
     font-family: Consolas;
 }
 
@@ -202,3 +202,19 @@ ESCRIPTE
     width: 100%;
     padding: 5px;
 }
+
+
+#sequenceList{
+    list-style: none;
+    padding: 8px;
+}
+
+#sequenceList li{
+    border-color: #eee;
+    border-style: solid;
+    border-width: 1px;
+    padding: 3px;
+    font-size: 10pt;
+    cursor: pointer;
+}
+

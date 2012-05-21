@@ -39,7 +39,38 @@
         <div id="editor"></div>
     </div>
     <div data-bind="visible: sessaoEscolhidaId() == 'Sequence'">
-        Sequence
+        <div class="row-fluid">
+            <div class="span3">
+                <ul id="sequenceList">
+                    <li>[0]: [[variavel]]</li>
+                    <li>[1]: get(variavel)</li>
+                    <li class="selecionado">[2]: [[asp net]]</li>
+                    <li>[3]: get(variavel)</li>
+                    <li>[4]: [[JS get]]</li>
+                    <li>[5]: get(variavel)</li>
+                    <li>[6]: [[JS set]]</li>
+                    <li>[7]: asp net: <%= get('asp net')%> javascript: get: <%= get('JS get')%> set: <%= get('JS
+                        set')%>
+                    </li>
+                    <li>[8]: RESULTADO FINAL</li>
+                </ul>
+            </div>
+            <div class="span9" id="divSequenceResults">
+                <div>
+<pre>escripte
+///r\n
+#[[variavel]]\n
+^(.*)$\n
+/\n
+hidden\1\n</pre>
+                </div>
+                <div>
+<pre>resultado
+hiddenComandoAtivo\n
+hiddenDisplayDiv\n</pre>
+                </div>
+            </div>
+        </div>
     </div>
     <div data-bind="visible: sessaoEscolhidaId() == 'View'">
         <pre id="preEscripte"></pre>
