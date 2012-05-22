@@ -10,6 +10,9 @@ body {
 .nav li a{
     cursor: pointer;
 }
+.nav li{
+    cursor: pointer;
+}
 
 /*
 
@@ -86,7 +89,7 @@ Code
 }
 #preEscripteCompleto
 {
-    width: 100px;
+    width: 100%;
     height: 20px;
     font-size: 8pt;
 }
@@ -98,6 +101,9 @@ Code
     background-color: #eee;
 }
 
+.pre_full{
+    width: 100%;
+}
 
 /*
 
@@ -188,7 +194,7 @@ ESCRIPTE
     background-color: #ddf;
 }
 
-#preEscripte, #preEscripteResultado, #textAreaDados, #divSequenceResults pre{
+#preEscripte, #preEscripteResultado, #textAreaDados, #divSequenceResults pre, .fonteMaior{
     font-size: 130%;
     font-family: Consolas;
 }
