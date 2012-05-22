@@ -41,34 +41,24 @@
     <div data-bind="visible: sessaoEscolhidaId() == 'Sequence'">
         <div class="row-fluid">
             <div class="span3">
-                <ul id="sequenceList">
-                    <li>[0]: [[variavel]]</li>
-                    <li>[1]: get(variavel)</li>
-                    <li class="selecionado">[2]: [[asp net]]</li>
-                    <li>[3]: get(variavel)</li>
-                    <li>[4]: [[JS get]]</li>
-                    <li>[5]: get(variavel)</li>
-                    <li>[6]: [[JS set]]</li>
-                    <li>[7]: asp net: <%= get('asp net')%> javascript: get: <%= get('JS get')%> set: <%= get('JS
-                        set')%>
-                    </li>
-                    <li>[8]: RESULTADO FINAL</li>
+                <ul id="sequenceList" data-bind="foreach : robo.passos">
+                    <li data-bind="text: $data.primeiroComentario(),
+                                   css: {selecionado: $data == $root.robo.xixizeroSelecionado() },
+                                   click: $root.robo.selecionarEscripte"></li>
                 </ul>
             </div>
             <div class="span9" id="divSequenceResults">
                 <div>
-<pre>escripte
-///r\n
-#[[variavel]]\n
-^(.*)$\n
-/\n
-hidden\1\n</pre>
+                    <pre data-bind="text:$root.robo.xixizeroSelecionado().Escripte"></pre>
                 </div>
                 <div>
-<pre>resultado
-hiddenComandoAtivo\n
-hiddenDisplayDiv\n</pre>
+                    <pre data-bind="text:$root.robo.xixizeroSelecionado().DadoTransformado"></pre>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset11 span1">
+                <textarea id="preEscripteCompleto"></textarea>
             </div>
         </div>
     </div>
@@ -108,7 +98,7 @@ javascript libs
 
 -->
 <script src="../dev-external-libs/jquery-1.7.1.js" type="text/javascript"></script>
-<script src="external-js/knockout-2.1.0.js" type="text/javascript"></script>
+<script src="external-js/knockout-2.1.0-debug.js" type="text/javascript"></script>
 <script src="manager.js" type="text/javascript"></script>
 
 <script src="external-js/bootstrap.js" type="text/javascript"></script>
