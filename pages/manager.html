@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="../index.html">emeTools.js</a>
+            <a class="brand" href="../index.html">emeTools.js [: sample manager :]</a>
 
             <div class="nav-collapse">
                 <ul class="nav" data-bind="foreach: sessoes">
@@ -58,14 +58,14 @@
         <div class="row-fluid">
             <div class="span3">
                 <ul id="sequenceList" data-bind="foreach : robo.passos">
-                    <li data-bind="text: $data.primeiroComentario(),
+                    <li data-bind="text: '[' + ko.utils.arrayIndexOf($root.robo.passos(), $data) + '] ' + $data.primeiroComentario(),
                                    css: {selecionado: $data == $root.robo.xixizeroSelecionado() },
                                    click: $root.selecionarEscripte"></li>
                 </ul>
             </div>
             <div class="span9" id="divSequenceResults">
                 <div>
-                    <pre class="pre_full" data-bind="text:$root.robo.xixizeroSelecionado().Escripte"></pre>
+                    <pre class="pre_full" data-bind="html:replace_show_invisible($root.robo.xixizeroSelecionado().escripteFormatado())"></pre>
                 </div>
                 <div>
                     <pre class="pre_full" data-bind="text:$root.robo.xixizeroSelecionado().DadoTransformado"></pre>
