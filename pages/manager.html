@@ -90,13 +90,13 @@
     <div data-bind="visible: sessaoSelecionadaId() == 'Transform'">
         <div class="row">
             <div id="divTransformar" class="span10">
-                <textarea data-bind="html: carregarTransform()" wrap="off"></textarea>
+                <textarea data-bind="value: resultadoTransformacao" wrap="off"></textarea>
             </div>
         </div>
         <div class="row">
             <div class="span10">
                 <p>(Ctrl + ENTER)&nbsp;&nbsp;&nbsp; <input class="btn btn-success" type="button" value="Transformar"
-                                                           data-bind="click : transformar"/></p>
+                                                           data-bind="click : carregarTransform"/></p>
             </div>
         </div>
     </div>
