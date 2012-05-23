@@ -63,7 +63,7 @@
                 <ul id="sequenceList" data-bind="foreach : robo.passos">
                     <li data-bind="text: $data.primeiroComentario(),
                                    css: {selecionado: $data == $root.robo.xixizeroSelecionado() },
-                                   click: $root.robo.selecionarEscripte"></li>
+                                   click: $root.selecionarEscripte"></li>
                 </ul>
             </div>
             <div class="span9" id="divSequenceResults">
@@ -102,7 +102,7 @@
     </div>
     <div data-bind="visible: sessaoSelecionadaId() == 'ko-data'">
         <div>
-            <pre data-bind="text: JSON.stringify(ko.toJS($data), null, 2)" id="preDebug"></pre>
+            <pre data-bind="text: formatData($data)" id="preDebug"></pre>
         </div>
     </div>
 </div>

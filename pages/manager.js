@@ -18,6 +18,11 @@ function ManagerViewModel() {
     self.sessoes = ['Edit', 'Sequence', 'View', 'Result', 'Transform', 'ko-data'];
     self.sessaoSelecionadaId = ko.observable();
 
+    self.formatData = function (data) {
+        var json = ko.toJS(data);
+        return JSON.stringify(json, null, 2);
+    }
+
     self.exemplos = ko.observableArray([]);
     self.exemplos().push(
         new Exemplo(
@@ -48,14 +53,12 @@ function ManagerViewModel() {
             }
         ));
 
-    self.escripteSelecionado = ko.observable(self.exemplos()[0].texto);
     self.exemploSelecionado = ko.observable(self.exemplos()[0]);
     self.selecionarExemplo = function (exemplo) {
         self.exemploSelecionado(exemplo);
-        self.escripteSelecionado(exemplo.texto);
     }
 
-    self.resultadoTransformacao = ko.observable(new RoboXixi(self.escripteSelecionado(), '\n').DadosIniciais);
+    self.resultadoTransformacao = ko.observable(new RoboXixi(self.exemploSelecionado().texto, '\n').DadosIniciais);
 
     /*
      *
@@ -86,7 +89,7 @@ function ManagerViewModel() {
 
         editor.show;
 
-        editor.getSession().setValue(self.escripteSelecionado())
+        editor.getSession().setValue(self.exemploSelecionado().texto)
     });
 
     /*
@@ -94,7 +97,22 @@ function ManagerViewModel() {
      * SEQUENCE
      *
      * */
+    self.robo = ko.observable();
+    self.robo.passos = ko.observableArray([]);
+    self.robo.xixizeroSelecionado = ko.observable();
+    self.selecionarEscripte = function (xixizero) {
+        self.robo.xixizeroSelecionado(xixizero);
+    };
     self.carregarSequence = ko.computed(function () {
+        var roboXixi = new RoboXixi(self.exemploSelecionado().texto, '\n');
+        roboXixi.transformar();
+        self.robo.passos.removeAll();
+
+        _.each(roboXixi.Xixizeros, function (xixi) {
+            self.robo.passos.push(xixi)
+        });
+
+        self.robo.xixizeroSelecionado(roboXixi.Xixizeros[0]);
     });
 
     /*
@@ -103,7 +121,7 @@ function ManagerViewModel() {
      *
      * */
     self.carregarVisualizacao = ko.computed(function () {
-        var transformado = replace_show_invisible(self.escripteSelecionado());
+        var transformado = replace_show_invisible(self.exemploSelecionado().texto);
         return transformado;
     });
 
@@ -113,7 +131,7 @@ function ManagerViewModel() {
      *
      * */
     self.carregarResult = ko.computed(function () {
-        var roboXixi = new RoboXixi(self.escripteSelecionado(), '\n');
+        var roboXixi = new RoboXixi(self.exemploSelecionado().texto, '\n');
         roboXixi.transformar();
 
         self.resultadoTransformacao(roboXixi.DadosIniciais);
@@ -121,7 +139,6 @@ function ManagerViewModel() {
         return roboXixi.ResultadoFinal;
     });
 
-    self.robo = new SequencerViewModel(self.escripteSelecionado());
     /*
      *
      * TRANSFORM
@@ -130,7 +147,7 @@ function ManagerViewModel() {
 
     self.carregarTransform = function () {
         // executa transformação
-        var roboXixi = new RoboXixi(self.escripteSelecionado(), '\n');
+        var roboXixi = new RoboXixi(self.exemploSelecionado().texto, '\n');
         roboXixi.DadosIniciais = self.resultadoTransformacao();
         roboXixi.transformar();
         self.resultadoTransformacao(roboXixi.ResultadoFinal);
@@ -143,7 +160,7 @@ function ManagerViewModel() {
 
     self.transformar = ko.computed(function () {
         // executa transformação
-        var roboXixi = new RoboXixi(self.escripteSelecionado(), '\n');
+        var roboXixi = new RoboXixi(self.exemploSelecionado().texto, '\n');
         roboXixi.transformar();
         return roboXixi.ResultadoFinal;
     });
@@ -157,24 +174,6 @@ function ManagerViewModel() {
 
 }
 ;
-
-function SequencerViewModel(texto) {
-    var self = this;
-    self.passos = ko.observableArray([]);
-    self.xixizeroSelecionado = ko.observable();
-    self.selecionarEscripte = function (xixizero) {
-        self.xixizeroSelecionado(xixizero);
-    };
-
-    var roboXixi = new RoboXixi(texto, '\n');
-    roboXixi.transformar();
-
-    _.each(roboXixi.Xixizeros, function (xixi) {
-        self.passos.push(xixi)
-    });
-
-    self.xixizeroSelecionado(roboXixi.Xixizeros[0]);
-}
 
 /////////////
 // KEY-BINDS:
@@ -203,6 +202,30 @@ window.onkeydown = function (evt) {
             indiceSelecionado++;
         }
         managerViewModel.robo.xixizeroSelecionado(managerViewModel.robo.passos()[indiceSelecionado]);
+        return false;
+    }
+    // CTRL + LEFT
+    if (evt.ctrlKey && evt.keyCode === 37) {
+        var sessaoSelecionadaId = managerViewModel.sessaoSelecionadaId();
+        var indiceSelecionado = _.indexOf(managerViewModel.sessoes, sessaoSelecionadaId);
+
+        if (indiceSelecionado > 0){  //passos.length - 1) {
+            indiceSelecionado--;
+        }
+
+        managerViewModel.irParaSessao(managerViewModel.sessoes[indiceSelecionado]);
+        return false;
+    }
+    // CTRL + RIGHT
+    if (evt.ctrlKey && evt.keyCode === 39) {
+        var sessaoSelecionadaId = managerViewModel.sessaoSelecionadaId();
+        var indiceSelecionado = _.indexOf(managerViewModel.sessoes, sessaoSelecionadaId);
+
+        if (indiceSelecionado < managerViewModel.sessoes.length - 1) {
+            indiceSelecionado++;
+        }
+
+        managerViewModel.irParaSessao(managerViewModel.sessoes[indiceSelecionado]);
         return false;
     }
     // CTRL + C
