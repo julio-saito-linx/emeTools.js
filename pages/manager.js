@@ -15,7 +15,7 @@ var Exemplo = function (obj) {
 function ManagerViewModel() {
     // Data
     var self = this;
-    self.sessoes = ['Edit', 'Sequence', 'View', 'Result', 'Transform', 'ko-data'];
+    self.sessoes = ['View', 'Result', 'Sequence', 'Transform'];
     self.sessaoSelecionadaId = ko.observable();
 
     self.formatData = function (data) {
@@ -59,38 +59,6 @@ function ManagerViewModel() {
     }
 
     self.resultadoTransformacao = ko.observable(new RoboXixi(self.exemploSelecionado().texto, '\n').DadosIniciais);
-
-    /*
-     *
-     * EDIT
-     *
-     * */
-    self.carregarEdit = ko.computed(function () {
-        // configura o editor
-        editor = ace.edit("editor");
-
-        // tamanho de fonte
-        editor.setFontSize('13pt');
-
-        // não transformar tab em espaço
-        editor.getSession().setUseSoftTabs(false);
-
-        // tab = 2 espaços
-        editor.getSession().setTabSize(2);
-
-        // mostrar invisíveis, TAB, espaca, quebra de linha...
-        editor.setShowInvisibles(true);
-
-        // modo ruby por causa dos comentários
-        var rubyMode = require("ace/mode/ruby").Mode;
-        var rubyInstanciado = new rubyMode();
-        rubyInstanciado.$tokenizer.rules.start.splice(10, 1, { token:"comment", regex:"aaa" });
-        editor.getSession().setMode(rubyInstanciado);
-
-        editor.show;
-
-        editor.getSession().setValue(self.exemploSelecionado().texto)
-    });
 
     /*
      *

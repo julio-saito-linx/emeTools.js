@@ -54,9 +54,6 @@
         </div>
     </div>
 
-    <div data-bind="visible: sessaoSelecionadaId() == 'Edit'">
-        <div id="editor"></div>
-    </div>
     <div data-bind="visible: sessaoSelecionadaId() == 'Sequence'">
         <div class="row-fluid">
             <div class="span3">
@@ -98,11 +95,6 @@
                 <p>(Ctrl + ENTER)&nbsp;&nbsp;&nbsp; <input class="btn btn-success" type="button" value="Transformar"
                                                            data-bind="click : carregarTransform"/></p>
             </div>
-        </div>
-    </div>
-    <div data-bind="visible: sessaoSelecionadaId() == 'ko-data'">
-        <div>
-            <pre data-bind="text: formatData($data)" id="preDebug"></pre>
         </div>
     </div>
 </div>
