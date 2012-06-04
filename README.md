@@ -1,4 +1,5 @@
 emeTools.js
 ===========
+string transformation javascript library
 
-string transformation framework for javascript
+demos at: http://saitodisse.github.com/emeTools.js/pages/manager.html#View
